@@ -296,8 +296,9 @@ def distributed_main(i, args, start_rank=0):
     main(args, init_distributed=True)
 
 
-def cli_main():
+def cli_main(modify_args = lambda parser: None):
     parser = options.get_training_parser()
+    modify_args(parser)
     args = options.parse_args_and_arch(parser)
 
     if args.distributed_init_method is None:
